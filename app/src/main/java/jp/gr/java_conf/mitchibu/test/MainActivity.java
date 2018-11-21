@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 																		for(Column column : columns) {
 																			android.util.Log.v("test", "column: " + column.name);
 																		}
-																		client.graphQl3(MainActivity.this, R.raw.test)
+																		client.graphQl3(MainActivity.this, R.raw.test1)
 																				.subscribeOn(Schedulers.io())
 																				.observeOn(AndroidSchedulers.mainThread())
 																				.subscribe(new Consumer<GraphQl.Data<Test>>() {

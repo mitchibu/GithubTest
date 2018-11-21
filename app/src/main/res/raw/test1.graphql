@@ -1,0 +1,9 @@
+query test($login: String!) {
+  repositoryOwner(login: $login) {
+    repositories(first: 25) {
+      nodes {
+        name
+      }
+    }
+  }
+}
