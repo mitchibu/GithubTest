@@ -1,0 +1,16 @@
+query test($owner: String!, $name: String!) {
+  repository(owner: $owner, name: $name) {
+    name,
+    description,
+    projects(first: 25) {
+      nodes {
+        columns(first: 25) {
+          nodes {
+            name
+          }
+        },
+        name
+      }
+    }
+  }
+}
