@@ -1,0 +1,10 @@
+query {
+  viewer {
+    login,
+    repositories(first: 25) {
+      nodes {
+        name
+      }
+    }
+  }
+}

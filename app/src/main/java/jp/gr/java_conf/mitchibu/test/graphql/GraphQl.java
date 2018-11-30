@@ -9,15 +9,7 @@ import java.util.Map;
 
 public class GraphQl {
 	public static class Query {
-		private String query = null;
-		private Map<String, Object> variables = null;
-
-		public Query query(String query) {
-			this.query = query;
-			return this;
-		}
-
-		public Query loadQueryFromRawResource(Context context, int id) throws IOException {
+		public static Query loadQueryFromRawResource(Context context, int id) throws IOException {
 			InputStream in = null;
 			try {
 				in = context.getResources().openRawResource(id);
@@ -25,12 +17,23 @@ public class GraphQl {
 				byte[] b = new byte[1024];
 				int n;
 				while((n = in.read(b)) > 0) sb.append(new String(b, 0, n));
-				return query(sb.toString());
+				return new Query(sb.toString());
 			} finally {
 				if(in != null) {
 					try {in.close();} catch(Exception e) {e.printStackTrace();}
 				}
 			}
+		}
+
+		private String query;
+		private Map<String, Object> variables = null;
+
+		public Query() {
+			this(null);
+		}
+
+		private Query(String query) {
+			this.query = query;
 		}
 
 		public Query put(String key, Object value) {

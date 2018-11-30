@@ -1,0 +1,11 @@
+query {
+  viewer {
+    login,
+    organizations(first: 25) {
+      nodes {
+        avatarUrl,
+        name
+      }
+    }
+  }
+}

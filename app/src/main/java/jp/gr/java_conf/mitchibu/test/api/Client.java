@@ -116,15 +116,15 @@ public class Client {
 	}
 
 	public Single<GraphQl.Data<Test>> graphQl3(Context context, int id) {
-		GraphQl.Query query = new GraphQl.Query();
 		try {
-			query.loadQueryFromRawResource(context, id);
+			GraphQl.Query query = GraphQl.Query.loadQueryFromRawResource(context, id);
+			query.put("login", "mitchibu");
+			query.put("owner", "mitchibu");
+			query.put("name", "Misc");
+			return api.graphQl3(query);
 		} catch(IOException e) {
 			e.printStackTrace();
+			return Single.error(e);
 		}
-		query.put("login", "mitchibu");
-		query.put("owner", "mitchibu");
-		query.put("name", "Misc");
-		return api.graphQl3(query);
 	}
 }
